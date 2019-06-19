@@ -2,17 +2,17 @@
 library("tidyverse")
 
 # Import Data 
-elec_sales <- read.csv("refine_original.csv")
+elec_sales <- read.csv("refine_original.csv", fileEncoding ="UTF-8-BOM")
 
 # Preview Data
 view(elec_sales)
 
 # Clean Brand Names 
-elec_sales$ï..company <- tolower(elec_sales$ï..company)
+elec_sales$company <- tolower(elec_sales$company)
 
-elec_sales$ï..company <- sub(pattern = ".*\\ps$", "philips", x = elec_sales$ï..company)
-elec_sales$ï..company <- sub(pattern = "^ak.*", replacement = "akzo", x = elec_sales$ï..company)
-elec_sales$ï..company <- sub(pattern = "^u.*", replacement = "unilever", x = elec_sales$ï..company)
+elec_sales$company <- sub(pattern = ".*\\ps$", "philips", x = elec_sales$company)
+elec_sales$company <- sub(pattern = "^ak.*", replacement = "akzo", x = elec_sales$company)
+elec_sales$company <- sub(pattern = "^u.*", replacement = "unilever", x = elec_sales$company)
 
 # Seperate Product Code and Number
 elec_sales <- elec_sales %>% 
@@ -21,17 +21,17 @@ elec_sales <- elec_sales %>%
 # Add Product Categories 
 elec_sales$product_category <- sub(pattern = "^p$", replacement = "Smartphone",
                                    x = sub("^x$", "Laptop", 
-                                           sub("^v$", "TV", 
-                                               sub("^q$", "Tablet", elec_sales$`Product Code`))))
+                                       sub("^v$", "TV", 
+                                       sub("^q$", "Tablet", elec_sales$`Product Code`))))
 
 # Add Full Addresses for Geocoding
 elec_sales <- mutate(elec_sales,full_address = paste(elec_sales$address, elec_sales$city, elec_sales$country))
 
 # Add Dummy Variables for Company and Product Category
-elec_sales <- mutate(elec_sales, company_philips = ifelse(ï..company == "philips", 1, 0))
-elec_sales <- mutate(elec_sales, company_akzo = ifelse(ï..company == "akzo", 1, 0))
-elec_sales <- mutate(elec_sales, company_van_houten = ifelse(ï..company == "van houten", 1, 0))
-elec_sales <- mutate(elec_sales, company_unilever = ifelse(ï..company == "unilever", 1, 0))
+elec_sales <- mutate(elec_sales, company_philips = ifelse(company == "philips", 1, 0))
+elec_sales <- mutate(elec_sales, company_akzo = ifelse(company == "akzo", 1, 0))
+elec_sales <- mutate(elec_sales, company_van_houten = ifelse(company == "van houten", 1, 0))
+elec_sales <- mutate(elec_sales, company_unilever = ifelse(company == "unilever", 1, 0))
 
 elec_sales <- mutate(elec_sales, product_smartphone = ifelse(product_category == "Smartphone", 1, 0))
 elec_sales <- mutate(elec_sales, product_tv = ifelse(product_category == "TV", 1, 0))
