@@ -1,4 +1,4 @@
-"ï..company","Product Code","Product Number","address","city","country","name","product_category","full_address","company_philips","company_akzo","company_van_houten","company_unilever","product_smartphone","product_tv","product_laptop","product_tablet"
+"company","Product Code","Product Number","address","city","country","name","product_category","full_address","company_philips","company_akzo","company_van_houten","company_unilever","product_smartphone","product_tv","product_laptop","product_tablet"
 "1","philips","p","5","Groningensingel 147","arnhem","the netherlands","dhr p. jansen","Smartphone","Groningensingel 147 arnhem the netherlands",1,0,0,0,1,0,0,0
 "2","philips","p","43","Groningensingel 148","arnhem","the netherlands","dhr p. hansen","Smartphone","Groningensingel 148 arnhem the netherlands",1,0,0,0,1,0,0,0
 "3","philips","x","3","Groningensingel 149","arnhem","the netherlands","dhr j. Gansen","Laptop","Groningensingel 149 arnhem the netherlands",1,0,0,0,0,0,1,0
